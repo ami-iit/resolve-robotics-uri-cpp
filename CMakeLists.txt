@@ -59,6 +59,8 @@ add_library(ResolveRoboticsURICpp::ResolveRoboticsURICpp ALIAS ResolveRoboticsUR
 target_include_directories(ResolveRoboticsURICpp INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
                                                             "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
 set_target_properties(ResolveRoboticsURICpp PROPERTIES PUBLIC_HEADER ResolveRoboticsURICpp.h)
+# Uses C++17 (optional)
+target_compile_featureS(ResolveRoboticsURICpp INTERFACE cxx_std_17)
 
 option(RRUC_INSTALL "Install the library" ${PROJECT_IS_TOP_LEVEL})
 

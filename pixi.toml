@@ -4,7 +4,7 @@ name = "resolve-robotics-uri-cpp"
 version = "0.0.0"
 description = "Resolve a package:// or model:// URI to an absolute filename in C++."
 authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
-channels = ["conda-forge"]
+channels = ["conda-forge","robotology","robostack-staging"]
 platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
 
 [tasks]
@@ -12,9 +12,10 @@ platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
 configure = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
-    # Workaround until CMake https://gitlab.kitware.com/cmake/cmake/-/merge_requests/9200
-    # is released
-    "-DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX",
+    # Hack and workaround until CMake https://gitlab.kitware.com/cmake/cmake/-/merge_requests/9200
+    # is released, we use AMENT_PREFIX_PATH as it is defined thanks to ros-humble-moveit-resources-panda-description\
+    # being installed, and it points to $CONDA_PREFIX on *nix and $CONDA_PREFIX\Library on Windows
+    "-DCMAKE_INSTALL_PREFIX=$AMENT_PREFIX_PATH",
     "-DBUILD_TESTING:BOOL=ON",
     # Use the cross-platform Ninja generator
     "-G",
@@ -42,4 +43,6 @@ cmake = "*"
 ninja = "*"
 catch2 = ">=3.5.2,<3.6"
 clang-format = ">=17.0.6,<17.1"
-
+# CI tests dependencies, not actualy dependencies
+icub-models = "*"
+ros-humble-moveit-resources-panda-description = "*"
