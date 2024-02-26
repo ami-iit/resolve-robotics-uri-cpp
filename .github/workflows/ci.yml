@@ -34,7 +34,7 @@ jobs:
 
     - name: Run the tests
       shell: bash -l {0}
-      run: pixi run tests
+      run: pixi run test
 
     # This test requires the conda-forge::icub-models,
     # robotology::ergocub-software and
