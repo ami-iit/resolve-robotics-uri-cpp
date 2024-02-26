@@ -46,7 +46,6 @@ bool getFilePath(const std::string& filename,
                  const bool isWindows,
                  std::string& outputFileName)
 {
-
     if (filename.substr(0, prefixToRemove.size()) == prefixToRemove)
     {
         std::string filename_noprefix = filename;
@@ -58,13 +57,9 @@ bool getFilePath(const std::string& filename,
             {
                 outputFileName = testPath;
                 return true;
-            } else
-            {
-                return false;
             }
         }
     }
-    outputFileName = filename; // By default return the input;
     return false;
 }
 
@@ -107,6 +102,17 @@ resolveRoboticsURI(const std::string& uriFilename, std::string& errorMessage)
                        + " is not a existing file path and does not start with file:/, package:/ "
                          "or model:/, it is not possible to resolve it.";
         return {};
+    }
+
+    std::string uriPrefix;
+    if (uriFilename.substr(0, packageUriPrefix.size()) == packageUriPrefix)
+    {
+        uriPrefix = packageUriPrefix;
+    }
+
+    if (modelUriPrefix.substr(0, modelUriPrefix.size()) == packageUriPrefix)
+    {
+        uriPrefix = modelUriPrefix;
     }
 
     // Actually solve it
@@ -158,7 +164,7 @@ resolveRoboticsURI(const std::string& uriFilename, std::string& errorMessage)
     }
 
     std::string realAbsoluteFileName;
-    bool ok = getFilePath(uriFilename, "package:/", pathList, isWindows, realAbsoluteFileName);
+    bool ok = getFilePath(uriFilename, uriPrefix, pathList, isWindows, realAbsoluteFileName);
 
     if (ok)
     {

@@ -4,7 +4,7 @@ name = "resolve-robotics-uri-cpp"
 version = "0.0.0"
 description = "Resolve a package:// or model:// URI to an absolute filename in C++."
 authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
-channels = ["conda-forge"]
+channels = ["conda-forge","robotology","robostack-staging"]
 platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
 
 [tasks]
@@ -42,4 +42,6 @@ cmake = "*"
 ninja = "*"
 catch2 = ">=3.5.2,<3.6"
 clang-format = ">=17.0.6,<17.1"
-
+# CI tests dependencies, not actualy dependencies
+icub-models = "*"
+ros-humble-moveit-resources-panda-description = "*"
