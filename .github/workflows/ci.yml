@@ -43,7 +43,7 @@ jobs:
     - name: Check command line helper
       shell: bash -l {0}
       run: |
-        resolve-robotics-uri-cpp package://iCub/robots/iCubGazeboV2_7/model.urdf
-        resolve-robotics-uri-cpp package://ergoCub/robots/ergoCubSN000/model.urdf
-        resolve-robotics-uri-cpp package://moveit_resources_panda_description/urdf/panda.urdf
-        ! resolve-robotics-uri-cpp package://this/file/does/not/exist
+        pixi run resolve-robotics-uri-cpp package://iCub/robots/iCubGazeboV2_7/model.urdf
+        pixi run resolve-robotics-uri-cpp package://ergoCub/robots/ergoCubSN000/model.urdf
+        pixi run resolve-robotics-uri-cpp package://moveit_resources_panda_description/urdf/panda.urdf
+        ! pixi run resolve-robotics-uri-cpp package://this/file/does/not/exist
