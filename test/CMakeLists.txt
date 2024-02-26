@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Fondazione Istituto Italiano di Tecnologia (IIT)
+# SPDX-License-Identifier: BSD-3-Clause
+
 # Test dependencies
 find_package(Catch2 3.0.1 REQUIRED)
 
