@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# pixi environments
+.pixi
+.build
