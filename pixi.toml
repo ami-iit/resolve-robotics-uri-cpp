@@ -31,6 +31,7 @@ build = { cmd = "cmake --build .build --config Release", depends_on = ["configur
 test = { cmd = "ctest --test-dir .build --build-config Release", depends_on = ["build"] }
 install = { cmd = ["cmake", "--install", ".build", "--config", "Release"], depends_on = ["build"] }
 uninstall = { cmd = ["cmake", "--build", ".build", "--target", "uninstall"]}
+format = { cmd = "clang-format -i *.cpp *.h ./test/*.cpp" }
 
 
 [dependencies]
@@ -40,4 +41,5 @@ cxx-compiler = "*"
 cmake = "*"
 ninja = "*"
 catch2 = ">=3.5.2,<3.6"
+clang-format = ">=17.0.6,<17.1"
 

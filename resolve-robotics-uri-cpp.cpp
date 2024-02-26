@@ -8,7 +8,8 @@ int main(int argc, char* argv[])
 {
     if (argc < 2)
     {
-        std::cerr << "resolve-robotics-uri-cpp: Wrong number of parameters. Usage " << argv[0] << " package://uri/of/the/model/to/resolve " << std::endl;
+        std::cerr << "resolve-robotics-uri-cpp: Wrong number of parameters. Usage " << argv[0]
+                  << " package://uri/of/the/model/to/resolve " << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -18,11 +19,10 @@ int main(int argc, char* argv[])
     if (absolute_file_name.has_value())
     {
         std::cout << absolute_file_name.value();
-    }
-    else 
+    } else
     {
-        std::cerr << "resolve-robotics-uri-cpp: Impossible to find URI " 
-                  << argv[1] << ", " << errorMessage << std::endl;
+        std::cerr << "resolve-robotics-uri-cpp: Impossible to find URI " << argv[1] << ", "
+                  << errorMessage << std::endl;
         return EXIT_FAILURE;
     }
 

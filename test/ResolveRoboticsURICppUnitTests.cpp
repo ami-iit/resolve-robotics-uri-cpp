@@ -6,5 +6,7 @@
 
 TEST_CASE("FileDoesNotExist")
 {
-    CHECK_FALSE(ResolveRoboticsURICpp::resolveRoboticsURI("package://this/package/and/file/does/not.exist").has_value());
+    CHECK_FALSE(ResolveRoboticsURICpp::resolveRoboticsURI("package://this/package/and/file/does/"
+                                                          "not.exist")
+                    .has_value());
 }
