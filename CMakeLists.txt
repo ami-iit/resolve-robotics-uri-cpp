@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(ResolveRoboticsURICpp
         LANGUAGES CXX C
-        VERSION 0.0.1)
+        VERSION 0.0.2)
 
 include(GNUInstallDirs)
 
@@ -92,7 +92,7 @@ if(RRUC_INSTALL)
     include(AddUninstallTarget)
 endif()
 
-if(BUILD_TESTING)
+if(BUILD_TESTING AND PROJECT_IS_TOP_LEVEL)
     add_subdirectory(test)
 endif()
 
