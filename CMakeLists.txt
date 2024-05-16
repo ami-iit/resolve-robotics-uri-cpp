@@ -25,7 +25,7 @@ if(NOT DEFINED PROJECT_IS_TOP_LEVEL)
     endif()
 endif()
 
-option(BUILD_TESTING "Create tests using CMake" ${PROJECT_IS_TOP_LEVEL})
+option(BUILD_TESTING "Create tests using CMake" OFF)
 
 if(BUILD_TESTING)
     enable_testing()
