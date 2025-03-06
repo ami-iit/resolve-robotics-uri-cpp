@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(ResolveRoboticsURICpp
         LANGUAGES CXX C
-        VERSION 0.0.2)
+        VERSION 0.0.3)
 
 include(GNUInstallDirs)
 
@@ -33,16 +33,21 @@ endif()
 
 
 # Get AddInstallRPATHSupport, InstallBasicPackageFiles, AddUninstallTarget
-include(FetchContent)
-FetchContent_Declare(YCM
-                     GIT_REPOSITORY https://github.com/robotology/ycm
-                     GIT_TAG v0.16.2)
-FetchContent_GetProperties(YCM)
-if(NOT YCM_POPULATED)
-    message(STATUS "Fetching YCM.")
-    FetchContent_Populate(YCM)
-    # Add YCM modules in CMAKE_MODULE_PATH
-    include(${ycm_SOURCE_DIR}/tools/UseYCMFromSource.cmake)
+if(NOT DEFINED RRUP_USE_SYSTEM_YCM)
+    find_package(YCM QUIET)
+    set(RRUP_USE_SYSTEM_YCM_DEFAULT_VALUE ${YCM_FOUND})
+else()
+    set(RRUP_USE_SYSTEM_YCM_DEFAULT_VALUE ${RRUP_USE_SYSTEM_YCM})
+endif()
+option(RRUP_USE_SYSTEM_YCM "If ON, look for YCM with find_package(YCM) instead of FetchContent" ${RRUP_USE_SYSTEM_YCM_DEFAULT_VALUE})
+if(RRUP_USE_SYSTEM_YCM)
+    find_package(YCM REQUIRED)
+else()
+    include(FetchContent)
+    FetchContent_Declare(YCM
+                         GIT_REPOSITORY https://github.com/robotology/ycm
+                         GIT_TAG v0.18.2)
+    FetchContent_MakeAvailable(YCM)
 endif()
 
 # Encourage user to specify a build type (e.g. Release, Debug, etc.), otherwise set it to Release.
